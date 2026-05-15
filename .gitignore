@@ -1,0 +1,30 @@
+# Git Ignore for PDF Utility Platform
+
+# Dependencies
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary processing files
+temp/*
+!temp/.gitkeep
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Misc
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
