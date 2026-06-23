@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '@/lib/config';
 import { Type, ArrowRight, Download, RefreshCw, Trash2 } from 'lucide-react';
 import FileUpload from '@/components/FileUpload';
 import { Button } from '@/components/ui/Button';
@@ -27,7 +28,7 @@ export default function EditPage() {
     formData.append('text', text);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/edit', formData, {
+      const response = await axios.post(`${API_URL}/api/edit`, formData, {
         responseType: 'blob',
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
@@ -57,7 +58,7 @@ export default function EditPage() {
   const handleDelete = async () => {
     if (!editedFileUrl) return;
     try {
-      await axios.post('http://localhost:5000/api/cleanup', { files: ['edited.pdf'] });
+      await axios.post(`${API_URL}/api/cleanup`, { files: ['edited.pdf'] });
       reset();
     } catch (error) {
       console.error('Cleanup error:', error);

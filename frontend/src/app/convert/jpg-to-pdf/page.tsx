@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '@/lib/config';
 import { Image as ImageIcon, ArrowRight, Download, RefreshCw, Trash2 } from 'lucide-react';
 import FileUpload from '@/components/FileUpload';
 import { Button } from '@/components/ui/Button';
@@ -27,7 +28,7 @@ export default function JpgToPdfPage() {
     });
 
     try {
-      const response = await axios.post('http://localhost:5000/api/convert/jpg-to-pdf', formData, {
+      const response = await axios.post(`${API_URL}/api/convert/jpg-to-pdf`, formData, {
         responseType: 'blob',
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
@@ -56,7 +57,7 @@ export default function JpgToPdfPage() {
   const handleDelete = async () => {
     if (!pdfUrl) return;
     try {
-      await axios.post('http://localhost:5000/api/cleanup', { files: ['images.pdf'] });
+      await axios.post(`${API_URL}/api/cleanup`, { files: ['images.pdf'] });
       reset();
     } catch (error) {
       console.error('Cleanup error:', error);

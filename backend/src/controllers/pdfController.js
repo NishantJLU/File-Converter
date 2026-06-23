@@ -18,6 +18,7 @@ const mergePDFs = async (req, res) => {
       filePaths.forEach(filePath => {
         if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
       });
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
       
       if (err) {
         console.error('Error sending file:', err);
@@ -40,6 +41,7 @@ const convertToWord = async (req, res) => {
 
     res.download(outputPath, 'converted.docx', (err) => {
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
 
       if (err) {
         console.error('Error sending file:', err);
@@ -68,6 +70,7 @@ const splitPDF = async (req, res) => {
       res.download(zipPath, 'split_pages.zip', (err) => {
         if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
         outputPaths.forEach(p => { if (fs.existsSync(p)) fs.unlinkSync(p); });
+        if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
       });
     });
 
@@ -94,6 +97,7 @@ const compressPDF = async (req, res) => {
 
     res.download(outputPath, 'compressed.pdf', (err) => {
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
   } catch (error) {
     console.error('Compress error:', error);
@@ -112,6 +116,7 @@ const jpgToPdf = async (req, res) => {
 
     res.download(outputPath, 'images.pdf', (err) => {
       filePaths.forEach(p => { if (fs.existsSync(p)) fs.unlinkSync(p); });
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
   } catch (error) {
     console.error('JPG to PDF error:', error);
@@ -136,6 +141,7 @@ const pdfToJpg = async (req, res) => {
       res.download(zipPath, 'images.zip', (err) => {
         if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
         outputPaths.forEach(p => { if (fs.existsSync(p)) fs.unlinkSync(p); });
+        if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
       });
     });
 
@@ -162,6 +168,7 @@ const unlockPDF = async (req, res) => {
 
     res.download(outputPath, 'unlocked.pdf', (err) => {
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
   } catch (error) {
     console.error('Unlock error:', error);
@@ -181,6 +188,7 @@ const editPDF = async (req, res) => {
 
     res.download(outputPath, 'edited.pdf', (err) => {
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     });
   } catch (error) {
     console.error('Edit error:', error);
