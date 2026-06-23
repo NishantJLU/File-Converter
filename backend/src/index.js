@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const routes = require('./routes');
 const path = require('path');
+const { startCleanupScheduler } = require('./services/cleanupService');
 
 dotenv.config();
 
@@ -24,4 +25,6 @@ app.get('/health', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  // Start the background temporary file cleanup scheduler
+  startCleanupScheduler();
 });

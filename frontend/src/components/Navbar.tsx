@@ -36,8 +36,6 @@ const Navbar = () => {
               {theme === 'dark' ? <Sun className="h-5 w-5 text-white" /> : <Moon className="h-5 w-5 text-black" />}
             </button>
           )}
-          <Link href="/login" className="text-sm font-bold text-black dark:text-white hover:opacity-70 transition-opacity">Log In</Link>
-          <Link href="/signup" className="rounded-md bg-black dark:bg-white px-4 py-2 text-sm font-bold text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-sm">Sign Up</Link>
         </div>
       </div>
     </nav>

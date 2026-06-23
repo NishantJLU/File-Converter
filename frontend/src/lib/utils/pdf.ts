@@ -1,9 +1,7 @@
-import * as pdfjsLib from 'pdfjs-dist';
-
-// Map the worker to a local copy or CDN
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
-
 export const generateThumbnail = async (file: File): Promise<string> => {
+  const pdfjsLib = await import('pdfjs-dist');
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+
   const arrayBuffer = await file.arrayBuffer();
   const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
   const pdf = await loadingTask.promise;
@@ -20,7 +18,8 @@ export const generateThumbnail = async (file: File): Promise<string> => {
   
   await page.render({
     canvasContext: context,
-    viewport: viewport
+    viewport: viewport,
+    canvas: canvas
   }).promise;
   
   return canvas.toDataURL();

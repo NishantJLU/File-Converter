@@ -10,7 +10,8 @@ import {
   Unlock, 
   RotateCw,
   Image as ImageIcon,
-  Type
+  Type,
+  ScanText
 } from 'lucide-react';
 import ToolCard from '@/components/ToolCard';
 

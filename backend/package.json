@@ -30,5 +30,10 @@
   },
   "optionalDependencies": {
     "canvas": "^3.2.3"
+  },
+  "allowScripts": {
+    "canvas@3.2.3": true,
+    "sharp@0.34.5": true,
+    "tesseract.js@7.0.0": true
   }
 }
