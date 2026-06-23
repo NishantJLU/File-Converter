@@ -39,6 +39,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (v18.0.0 or higher)
 - [npm](https://www.npmjs.com/)
+- [qpdf](https://github.com/qpdf/qpdf) (Required for PDF unlocking utility)
 
 ### Installation
 
@@ -61,6 +62,8 @@ Follow these instructions to get a copy of the project up and running on your lo
    ```bash
    cd frontend
    npm install
+   # Optional: Configure the API URL if running the backend on a different port/host
+   # Create a .env.local file and add: NEXT_PUBLIC_API_URL=http://localhost:5000
    npm run dev
    ```
 
@@ -85,8 +88,8 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 We take your document privacy seriously:
 - Files are stored in a temporary directory during processing.
-- Temporary files are automatically deleted after a short period.
-- Users can manually trigger immediate file deletion from the server after conversion.
+- Uploaded and generated files are automatically cleaned up immediately after download transmission finishes.
+- A background scheduler cleans up any remaining files every 60 seconds as a backup failsafe.
 - No files are permanently stored on our servers.
 
 ---
